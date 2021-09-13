@@ -4,9 +4,20 @@ namespace ToDoListConsoleApp
 {
     class Program
     {
-        private static void Main(string[] args)
+        private static AppContext database;
+
+        private static void Main()
         {
-            Console.WriteLine("Hello, world!");
+            database = new AppContext();
+            database.Tasks.Add(new Task() { Description = "Blank task" });
+            database.SaveChanges();
+
+            Console.WriteLine("Tasks:");
+            foreach (Task task in database.Tasks)
+            {
+                Console.WriteLine($"{task.Id}. {task.Description}");
+            }
+
             Console.ReadKey();
         }
     }
