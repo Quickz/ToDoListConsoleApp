@@ -14,6 +14,7 @@ namespace ToDoListConsoleApp
 
             while (true)
             {
+                Console.Write("> ");
                 string input = Console.ReadLine().ToLower();
                 
                 if (input == "add")
