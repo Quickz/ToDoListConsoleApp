@@ -13,7 +13,7 @@ namespace ToDoListConsoleApp
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Alex\source\repos\ToDoListConsoleApp\ToDoListConsoleApp\AppDB.mdf;Integrated Security=True");
+            optionsBuilder.UseSqlServer(AppSettings.DefaultConnectionString);
         }
     }
 }
