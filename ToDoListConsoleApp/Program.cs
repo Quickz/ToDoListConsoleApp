@@ -24,6 +24,8 @@ namespace ToDoListConsoleApp
                     Print();
                 else if (input == "help")
                     Help();
+                else if (input == "clear")
+                    Clear();
                 else if (input == "exit")
                     break;
             }
@@ -70,6 +72,11 @@ namespace ToDoListConsoleApp
         private static void Help()
         {
             Console.WriteLine("Commands: add, remove, print, help, exit");
+        }
+
+        private static void Clear()
+        {
+            Console.Clear();
         }
     }
 }
