@@ -14,8 +14,8 @@ namespace ToDoListConsoleApp
 
             while (true)
             {
-                string input = Console.ReadLine();
-
+                string input = Console.ReadLine().ToLower();
+                
                 if (input == "add")
                     Add();
                 else if (input == "remove")
