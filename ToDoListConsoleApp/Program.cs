@@ -10,6 +10,7 @@ namespace ToDoListConsoleApp
         private static void Main()
         {
             database = new AppContext();
+            Help();
 
             while (true)
             {
@@ -21,6 +22,8 @@ namespace ToDoListConsoleApp
                     Remove();
                 else if (input == "print")
                     Print();
+                else if (input == "help")
+                    Help();
                 else if (input == "exit")
                     break;
             }
@@ -62,6 +65,11 @@ namespace ToDoListConsoleApp
             {
                 Console.WriteLine($"{task.Id}) {task.Description}");
             }
+        }
+
+        private static void Help()
+        {
+            Console.WriteLine("Commands: add, remove, print, help, exit");
         }
     }
 }
