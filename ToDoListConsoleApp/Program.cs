@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace ToDoListConsoleApp
 {
@@ -17,11 +18,13 @@ namespace ToDoListConsoleApp
             {
                 Console.Write("> ");
                 string input = Console.ReadLine().ToLower();
-                
+
                 if (input == "add")
                     Add();
                 else if (input == "remove")
                     Remove();
+                else if (Regex.IsMatch(input, "^remove [0-9]{0,}$"))
+                    Remove(input.Split(' ')[1]);
                 else if (input == "print")
                     Print();
                 else if (input == "help")
@@ -30,6 +33,8 @@ namespace ToDoListConsoleApp
                     Clear();
                 else if (input == "exit")
                     break;
+                else
+                    Console.WriteLine("Invalid input!");
             }
         }
 
@@ -67,7 +72,12 @@ namespace ToDoListConsoleApp
         private static void Remove()
         {
             Console.Write("Task id: ");
-            if (!int.TryParse(Console.ReadLine(), out int id))
+            Remove(Console.ReadLine());
+        }
+
+        private static void Remove(string idString)
+        {
+            if (!int.TryParse(idString, out int id))
             {
                 Console.WriteLine("Invalid ID!");
                 return;
