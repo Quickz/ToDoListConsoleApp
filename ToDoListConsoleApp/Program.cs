@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 
 namespace ToDoListConsoleApp
@@ -9,7 +10,7 @@ namespace ToDoListConsoleApp
 
         private static void Main()
         {
-            database = new AppContext();
+            database = new AppContext(GetDatabasePath());
             Help();
 
             while (true)
@@ -30,6 +31,29 @@ namespace ToDoListConsoleApp
                 else if (input == "exit")
                     break;
             }
+        }
+
+        private static string GetDatabasePath()
+        {
+            const string databaseFileName = "AppDB.mdf";
+            const string databaseTargetDirectory = "ToDoListConsoleApp";
+
+            string targetPath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                databaseTargetDirectory,
+                databaseFileName);
+
+            if (!File.Exists(targetPath))
+            {
+                string sourcePath = Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory,
+                    databaseFileName);
+
+                Directory.CreateDirectory(Path.GetDirectoryName(targetPath));
+                File.Copy(sourcePath, targetPath);
+            }
+
+            return targetPath;
         }
 
         private static void Add()
