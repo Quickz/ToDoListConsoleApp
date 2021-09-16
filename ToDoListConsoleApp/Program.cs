@@ -21,6 +21,8 @@ namespace ToDoListConsoleApp
 
                 if (input == "add")
                     Add();
+                else if (Regex.IsMatch(input, "^add .{0,}$"))
+                    Add(input[(input.IndexOf(' ') + 1)..^0]);
                 else if (input == "remove")
                     Remove();
                 else if (Regex.IsMatch(input, "^remove [0-9]{0,}$"))
@@ -64,8 +66,12 @@ namespace ToDoListConsoleApp
         private static void Add()
         {
             Console.Write("Task description: ");
-            string description = Console.ReadLine();
-            database.Tasks.Add(new Task() { Description = description });
+            Add(Console.ReadLine());
+        }
+
+        private static void Add(string taskDescription)
+        {
+            database.Tasks.Add(new Task() { Description = taskDescription });
             database.SaveChanges();
         }
 
