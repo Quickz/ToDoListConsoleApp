@@ -42,19 +42,16 @@ namespace ToDoListConsoleApp
 
         private static string GetDatabasePath()
         {
-            const string databaseFileName = "AppDB.mdf";
-            const string databaseTargetDirectory = "ToDoListConsoleApp";
-
             string targetPath = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                databaseTargetDirectory,
-                databaseFileName);
+                AppSettings.DatabaseTargetDirectory,
+                AppSettings.DatabaseFileName);
 
             if (!File.Exists(targetPath))
             {
                 string sourcePath = Path.Combine(
                     AppDomain.CurrentDomain.BaseDirectory,
-                    databaseFileName);
+                    AppSettings.DatabaseFileName);
 
                 Directory.CreateDirectory(Path.GetDirectoryName(targetPath));
                 File.Copy(sourcePath, targetPath);

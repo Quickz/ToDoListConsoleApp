@@ -10,6 +10,9 @@ namespace ToDoListConsoleApp
     static class AppSettings
     {
         public static string DefaultConnectionString => GetConfigValue("DefaultConnectionString");
+        public static string DatabaseFileName => GetConfigValue("DatabaseFileName");
+        public static string DatabaseTargetDirectory => GetConfigValue("DatabaseTargetDirectory");
+
         private static IConfigurationRoot config;
         private static bool initialized;
 
