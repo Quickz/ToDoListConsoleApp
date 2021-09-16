@@ -9,6 +9,10 @@ namespace ToDoListConsoleApp
 {
     static class AppSettings
     {
+        /// <summary>
+        ///  ConnectionString that's used when nothing else is available.
+        ///  For example, it's used during migrations.
+        /// </summary>
         public static string DefaultConnectionString => GetConfigValue("DefaultConnectionString");
         public static string DatabaseFileName => GetConfigValue("DatabaseFileName");
         public static string DatabaseTargetDirectory => GetConfigValue("DatabaseTargetDirectory");
