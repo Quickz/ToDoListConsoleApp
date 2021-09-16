@@ -26,6 +26,8 @@ namespace ToDoListConsoleApp
             if (initialized)
                 throw new InvalidOperationException("App settings have already been initialized!");
 
+            initialized = true;
+
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", true, true);
             config = builder.Build();
